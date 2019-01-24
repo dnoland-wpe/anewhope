@@ -1,5 +1,5 @@
 <H2>A New Hope</H2>
-<H3>A case study in using R to facilitate statistical and non-statistical interdepartmental collaboration
+<H3>A case study in using R to facilitate statistical and non-statistical interdepartmental collaboration</H3>
 
 Welcome to A New Hope - an introductory case study in beginning theoretical applications of using R and RStudio.  For
 more information on R and RStudio, please review the https://rstudio.com. The following is a hypothetical, fictionalized
