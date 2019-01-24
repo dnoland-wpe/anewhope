@@ -1,0 +1,146 @@
+---
+title: "A New Hope Case Study"
+author: "David T. Noland"
+date: "1/21/2019"
+output: pdf_document
+---
+
+```{r warning = FALSE, message = FALSE, echo = FALSE}
+library(tidyverse)
+library(ggplot2)
+df <- read.csv("anh_environs.csv", stringsAsFactors = FALSE)
+
+df_concat <- df %>%
+               group_by(Phase, upgrade_date, comlink_address, first_name, account, plan, planet) %>%
+               summarise(environments_concat = paste(environs, collapse = ","))
+colnames(df_concat)[3] <- "comlink_address"
+```
+
+## A New Hope Case Study
+
+Welcome to A New Hope - an introductory case study in beginning theoretical applications of using R and RStudio.  For
+more information on R and RStudio, please review the https://rstudio.com. The following is a hypothetical, fictionalized
+accounting of a real-world collaboration within one technology company.
+
+## Context
+In December 2018, PHP versions 5.6 and 7.0 both reached their respective EOL timeframe. As a result, these versions would no longer be supported by the PHP Community, thus no more patches to these Apache versions, leaving servers potentially vulnerable to new security threats that arise after the support cycle completed.
+
+**Platform Hosting Outer Rim Commerce Enterprises, Inc. (PHORCE)** (formerly branded as the Trade Federation) is now tasked with upgrading their entire server farm that supports 10 planets and mobile stations within the Galactic Empire within a six month timeline.  This necessitates collaboration from the **Operations Data Team (ODT)**, the **Imperial Consortium for Engineering (ICE)**, and the **Coruscant Communications Network (CCN)** to personally communicate with each of their customers to plan and execute the upgrade plan.
+
+## Purpose of Case Study
+- Demonstrate how to efficiently use a single dataset to collaborate between multiple departments with different data
+requirements
+- Demonstrate how to reduce amount of code needed by using replicable functions and simple for loops
+- Provide self practice opportunity for creating a fictional case study and build an RMarkdown report highlighting results
+
+**Sample initial dataset**: anh_environs.csv
+
+**Script**: anh_case_study.R
+
+**Analysis**: anh_case_study.Rmd
+\newpage
+
+## Sample of initial dataset
+
+```{r echo = FALSE}
+str(df)
+head(df)
+```
+
+## Eliminating repetitious code with functions and simple loops
+
+Intially the project script included repetitious code in the amount of nearly 100 lines that looked similar to the following sample:
+
+```{r echo = TRUE}
+  as.data.frame(df_concat) %>% 
+    filter(Phase == 1) %>%
+    separate_rows(environments_concat, sep = ",") %>%
+    rename(environs = environments_concat) %>%
+    select(environs) %>% 
+    unique()
+  as.data.frame(df_concat) %>% 
+    filter(Phase == 2) %>%
+    separate_rows(environments_concat, sep = ",") %>%
+    rename(environs = environments_concat) %>%
+    select(environs) %>% 
+    unique()
+```
+
+After recognizing that the pattern of this same block of code extending for the entirety of the dataset to break out engineering groups for the ICE team, we decided to estimate how much code could be spared.  As each phase required 6 lines of code to create an independent block, and there were 5 phases to consider, this amounted to 30 lines of repeated code.  Reducing this with a single function and a for loop, reduced this block of code by 50%:
+
+```{r }
+# set Phase to datatype factor and order by factor level
+# this makes it possible to also order the viz in Phase order from top to bottom
+df$Phase <- factor(df$Phase, levels = seq(max(df$Phase), min(df$Phase), by = -1))
+# create a vector of range of unique Phase numbers, ordered by factor level
+phases <- c(unique(df$Phase)) 
+
+# Function to create engineering phase groups
+create_engineering_phase_group <- function(p){
+  as.data.frame(df_concat) %>% 
+    filter(Phase == p) %>%
+    separate_rows(environments_concat, sep = ",") %>%
+    rename(environs = environments_concat) %>%
+    select(environs) %>% 
+    unique()
+}
+# For loop to create individual phase group dataframes
+for (i in phases){
+  i_group <- create_engineering_phase_group(i)
+  assign(paste("Enginnering_phase_", i, sep = ""), i_group)
+}
+```
+
+For the CCN team, 20 lines were reduced to the following (again, another 50% reduction in code):
+
+```{r echo = TRUE}
+# Function to create communications phase sets
+create_comms_phase_group <- function(p){
+  as.data.frame(df_concat) %>%
+    filter(Phase == p)
+}
+
+# Loop to create phased comms groups
+for (c in phases){
+  c_group <- create_comms_phase_group(c)
+  assign(paste("Comms_phase_", c, sep = ""), c_group)
+}
+```
+\newpage
+
+## Table count of environs by planet
+
+```{r echo = TRUE}
+df %>%
+    group_by(planet) %>%
+    count() %>%
+    arrange(desc(n))
+```
+
+## Chart of environs by Phase
+
+```{r fig.height = 2, fig.width = 3, echo = TRUE}
+as.data.frame(df) %>%
+    select(Phase, environs) %>%
+    arrange(Phase) %>%
+    unique() %>%
+    ggplot(aes(Phase)) +
+    geom_bar(fill = "purple") +
+    ggtitle("Environs by Phase") +
+    theme(legend.position = "none") +
+    coord_flip()
+```
+
+## Chart of comlink messages by Phase
+
+```{r fig.height = 2, fig.width = 3, echo = TRUE}
+as.data.frame(df) %>%
+    select(Phase, comlink_address) %>%
+    arrange(Phase) %>%
+    unique() %>%
+    ggplot(aes(Phase)) +
+        geom_bar(fill = "red") +
+        ggtitle("Contacts by Phase") +
+        theme(legend.position = "none") +
+        coord_flip()
+```

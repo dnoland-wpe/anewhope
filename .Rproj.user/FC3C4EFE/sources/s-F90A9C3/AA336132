@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1548345103175.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "AA336132",
+    "lastKnownWriteTime" : 1548279364,
+    "last_content_update" : 1548279364,
+    "path" : "~/Documents/GitHub/anewhope/anh_case_study.R",
+    "project_path" : "anh_case_study.R",
+    "properties" : {
+        "cursorPosition" : "76,0",
+        "scrollLine" : "69"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

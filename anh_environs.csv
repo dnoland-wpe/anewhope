@@ -1,0 +1,46 @@
+Phase,upgrade_date,first_name,last_name,comlink_address,account,environs,plan,planet,php_version
+1,"January 24, 2019",Obi-wan,Kenobi,old.ben@dunesea.net,Jedi,master,Light,Tatooine,5.6
+1,"January 24, 2019",Obi-wan,Kenobi,old.ben@dunesea.net,Jedi,council,Light,Tatooine,5.6
+1,"January 24, 2019",Obi-wan,Kenobi,old.ben@dunesea.net,Jedi,lightsaber,Light,Tatooine,7
+1,"January 24, 2019",Yoda,,shawty@dagobah.edu,Jedi,master,Light,Dagobah,7
+1,"January 24, 2019",Yoda,,shawty@dagobah.edu,Jedi,swamprat,Light,Dagobah,7
+1,"January 24, 2019",Luke,Skywalker,farmboy@dunesea.net,Rebel,pilot,Light,Tatooine,5.6
+1,"January 24, 2019",Luke,Skywalker,farmboy@dunesea.net,Rebel,rebel,Light,Tatooine,5.6
+1,"January 24, 2019",Luke,Skywalker,farmboy@dunesea.net,Jedi,lightsaber,Light,Tatooine,7
+1,"January 24, 2019",Luke,Skywalker,farmboy@dunesea.net,Rebel,handy,Light,Tatooine,5.6
+1,"January 24, 2019",Luke,Skywalker,farmboy@dunesea.net,Rebel,hermit,Light,Tatooine,7.2
+1,"January 24, 2019",Leia,Organa,general.organa@rebelalliance.mil,Rebel,diplomat,Light,Yavin,7
+1,"January 24, 2019",Leia,Organa,general.organa@rebelalliance.mil,Rebel,general,Light,Yavin,7
+1,"January 24, 2019",Leia,Organa,general.organa@rebelalliance.mil,Rebel,rebel,Light,Yavin,5.6
+1,"January 24, 2019",Leia,Organa,general.organa@rebelalliance.mil,Resistance,resistance,Light,Yavin,5.6
+2,"January 31, 2019",Han,Solo,carbonite_dreamer@jabbaspalace.com,Scoundrel,smuggler,Light,Corellia,5.3
+2,"January 31, 2019",Han,Solo,carbonite_dreamer@jabbaspalace.com,Scoundrel,nerf-herder,Light,Corellia,5.3
+2,"January 31, 2019",Chewbacca,Wookie,wookiesneedlovetoo@falcon..   .com,Scoundrel,smuggler,Light,Kashyyyk,5.3
+2,"January 31, 2019",Chewbacca,Wookie,wookiesneedlovetoo@falcon..   .com,Scoundrel,walking-carpet,Light,Kashyyyk,5.3
+2,"January 31, 2019",Lando,Calrissian,administrator@bespin.com,Scoundrel,smuggler,Light,Bespin,7
+2,"January 31, 2019",Lando,Calrissian,administrator@bespin.com,Scoundrel,gambler,Light,Bespin,7
+3,"February 7, 2019",R2D2,,sysad@rebelalliance.mil,Droid,scout,Light,Tatooine,7.2
+3,"February 7, 2019",R2D2,,sysad@rebelalliance.mil,Rebel,rebel,Light,Tatooine,5.6
+3,"February 7, 2019",R2D2,,sysad@rebelalliance.mil,Resistance,resistance,Light,Tatooine,5.6
+3,"February 7, 2019",C3PO,,    protocol@rebelalliance.mil,Droid,protocol,Light,Tatooine,7
+3,"February 7, 2019",C3PO,,    protocol@rebelalliance.mil,Rebel,rebel,Light,Tatooine,7
+3,"February 7, 2019",BB8,,bowling_for_peace@resistance.mil,Resistance,resistance,Light,Jakku,5.6
+4,"February 14, 2019",Rey,,whosmydaddy@jakku.com,Resistance,scavenger,Light,Jakku,7
+4,"February 14, 2019",Rey,,whosmydaddy@jakku.com,Resistance,bowstaff,Light,Jakku,7
+4,"February 14, 2019",Finn,,tr8r@firstorder.mil             ,Resistance,sanitation,Light,Starkiller Base,5.6
+4,"February 14, 2019",Finn,,tr8r@firstorder.mil             ,Resistance,trooper,Light,Starkiller Base,5.6
+4,"February 14, 2019",Finn,,tr8r@firstorder.mil             ,Resistance,traitor,Light,Starkiller Base,5.6
+4,"February 14, 2019",Poe,Dameron,maverick2@topgun.mil,Resistance,black-x,Light,Black Squadron,7
+4,"February 14, 2019",Poe,Dameron,maverick2@topgun.mil,Resistance,smartass,Light,Black Squadron,7
+5,"February 21, 2019",Darth,Vader,sith.lord@galacticempire.gov,Empire,empire,Dark,Mustafar,7.2
+5,"February 21, 2019",Darth,Vader,sith.lord@galacticempire.gov,Empire,choke,Dark,Mustafar,7.2
+5,"February 21, 2019",Darth,Vader,sith.lord@galacticempire.gov,Empire,father,Dark,Mustafar,5.6
+5,"February 21, 2019",Darth,Sidious,emperor@galacticempire.gov,Empire,empire,Dark,Coruscant,7.2
+5,"February 21, 2019",Darth,Sidious,emperor@galacticempire.gov,Empire,emperor,Dark,Coruscant,7.2
+5,"February 21, 2019",Darth,Sidious,emperor@galacticempire.gov,Empire,lightning ,Dark,Coruscant,7.2
+5,"February 21, 2019",Wilhuff,Tarkin,grandmoff@galacticempire.gov,Empire,grand-moff,Dark,Death Star,7
+5,"February 21, 2019",Admiral,Thrawn,admiral@galacticempire.gov,Empire,grand-admiral,Dark,Chimera,7
+5,"February 21, 2019",Snoke,,supremeleader@firstorder.mil,First Order,halfass,Dark,Dreadnaught,7.2
+5,"February 21, 2019",Kylo,Ren,broodingknight@yahoo.com,First Order,knight,Dark,Knights of Ren,5.6
+5,"February 21, 2019",Kylo,Ren,broodingknight@yahoo.com,First Order,patricide,Dark,Knights of Ren,5.6
+5,"February 21, 2019",Kylo,Ren,broodingknight@yahoo.com,First Order,crossguard,Dark,Knights of Ren,5.6
