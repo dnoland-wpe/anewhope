@@ -15,22 +15,36 @@
 #   1. Accounts only found in one phase, regardless of number of users on account
 #   2. User only receives one email per account they are authorized on.
 
-library(here)
-library(textclean)
 library(tidyverse)
 library(tm)
+
+# Set working directory - add project folder
+setwd("~/Documents/Github/anewhope")
 
 # Import initial dataset
 df <- read.csv("anh_environs.csv", stringsAsFactors = FALSE)
 df$Phase <- factor(df$Phase, levels = seq(max(df$Phase), min(df$Phase), by = -1))
 str(df)
 
+# Identify anomalous email addresses
+isValidEmail <- function(x) {
+    grepl("\\<[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}\\>", as.character(x), ignore.case=TRUE) 
+}
+#isValidEmail <- function(x) {
+#    grepl("^[[:alnum:].-_]+@[[:alnum:].-]+$", as.character(x), ignore.case = TRUE)
+#}
+
+
 # Email format cleaning post EDA (Exploratory Data Analysis) for data format anomalies
 df$comlink_address <- as.character(df$comlink_address)
 df$comlink_address <- lapply(df$comlink_address, tolower)
 df$comlink_address <- lapply(df$comlink_address, trimws)
 df$comlink_address <- lapply(df$comlink_address, stripWhitespace)
-df$comlink_address <- gsub(".. ", "", df$comlink_address)
+df$comlink_address <- gsub(" ", "", df$comlink_address)
+df$comlink_address <- gsub("\\.\\.+", ".", df$comlink_address)
+df$comlink_address <- gsub("*\\*+", NA, df$comlink_address)
+valid_emails <- lapply(df$comlink_address, isValidEmail)
+write.csv(df, "testoutput.csv", row.names = FALSE)
 
 # split out concatted install column into individual rows per install
 df_concat <- df %>%
