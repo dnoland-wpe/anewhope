@@ -17,6 +17,7 @@
 
 library(tidyverse)
 library(tm)
+library(stringr)
 
 # Set working directory - add project folder
 setwd("~/Documents/Github/anewhope")
@@ -27,24 +28,34 @@ df$Phase <- factor(df$Phase, levels = seq(max(df$Phase), min(df$Phase), by = -1)
 str(df)
 
 # Identify anomalous email addresses
-isValidEmail <- function(x) {
-    grepl("\\<[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}\\>", as.character(x), ignore.case=TRUE) 
+clean_emails <- function(x) {
+    # Common email anomalies
+    x <- as.character(x)
+    x <- lapply(x, tolower)
+    x <- lapply(x, trimws)
+    x <- lapply(x, stripWhitespace)
+    x <- sub("[[:space:]]", "", x)
+    x <- sub("\\.\\.+", ".", x)
+    x <- sub("^\\.", "", x)
+    x <- sub("\\.$", "", x)
+    x <- sub("@-", "@", x)
+    
+    # substitute email address with invalid characters with NA
+    x <- sub("*\\*+", NA, x)
+    return(x)
 }
-#isValidEmail <- function(x) {
-#    grepl("^[[:alnum:].-_]+@[[:alnum:].-]+$", as.character(x), ignore.case = TRUE)
-#}
 
+# Validate emails following clean
+email_pattern <- "^\\<[A-Za-z0-9.-]+[^.]([\\.])[^.][A-Za-z0-9.-]+@[A-Za-z0-9.-]+[^.]([\\.])[^.][A-Za-z]{2,}$"
 
-# Email format cleaning post EDA (Exploratory Data Analysis) for data format anomalies
-df$comlink_address <- as.character(df$comlink_address)
-df$comlink_address <- lapply(df$comlink_address, tolower)
-df$comlink_address <- lapply(df$comlink_address, trimws)
-df$comlink_address <- lapply(df$comlink_address, stripWhitespace)
-df$comlink_address <- gsub(" ", "", df$comlink_address)
-df$comlink_address <- gsub("\\.\\.+", ".", df$comlink_address)
-df$comlink_address <- gsub("*\\*+", NA, df$comlink_address)
-valid_emails <- lapply(df$comlink_address, isValidEmail)
-write.csv(df, "testoutput.csv", row.names = FALSE)
+isValidEmail <- function(x) {
+    grepl(email_pattern, as.character(x), ignore.case = TRUE)
+}
+
+df['comlink_address'] <- as.data.frame(sapply(df$comlink_address, clean_emails))
+check_emails <- lapply(df$comlink_address, isValidEmail)
+invalid_emails <- subset(df, !grepl(email_pattern, comlink_address))
+#write.csv(df, "testoutput.csv", row.names = FALSE)
 
 # split out concatted install column into individual rows per install
 df_concat <- df %>%
