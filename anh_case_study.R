@@ -34,11 +34,11 @@ clean_emails <- function(x) {
     x <- lapply(x, tolower)
     x <- lapply(x, trimws)
     x <- lapply(x, stripWhitespace)
-    x <- sub("[[:space:]]", "", x)
-    x <- sub("\\.\\.+", ".", x)
-    x <- sub("^\\.", "", x)
-    x <- sub("\\.$", "", x)
-    x <- sub("@-", "@", x)
+    x <- gsub("[[:space:]]", "", x)
+    x <- gsub("\\.\\.+", ".", x)
+    x <- gsub("^\\.", "", x)
+    x <- gsub("\\.$", "", x)
+    x <- gsub("@-", "@", x)
     
     # substitute email address with invalid characters with NA
     x <- sub("*\\*+", NA, x)
