@@ -20,7 +20,7 @@ colnames(df_concat)[3] <- "comlink_address"
 
 Welcome to A New Hope - an introductory case study in beginning theoretical applications of using R and RStudio.  For
 more information on R and RStudio, please review the https://rstudio.com. The following is a hypothetical, fictionalized
-accounting of a real-world collaboration within one technology company.
+accounting of a real-world collaboration within one technology company.  The full repository for this case study (including utilized initial dataset and final output) is downloadable at **[Github](https://github.com/dnoland-wpe/anewhope)**: https://github.com/dnoland-wpe/anewhope
 
 ## Context
 In December 2018, PHP versions 5.6 and 7.0 both reached their respective EOL timeframe. As a result, these versions would no longer be supported by the PHP Community, thus no more patches to these Apache versions, leaving servers potentially vulnerable to new security threats that arise after the support cycle completed.

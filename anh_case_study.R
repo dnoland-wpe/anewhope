@@ -47,14 +47,31 @@ clean_emails <- function(x) {
 
 # Validate emails following clean
 email_pattern <- "^\\<[A-Za-z0-9.-]+[^.]([\\.])[^.][A-Za-z0-9.-]+@[A-Za-z0-9.-]+[^.]([\\.])[^.][A-Za-z]{2,}$"
+email_pattern2 <- "/^[a-zA-Z0-9!#$%&\\'*+\\/=?^_`{|}~\\.-]+$/"
+email_pattern <- "^[[:alnum:].-]+?([^.]([\\.])[^.])[[:alnum:].-]+@[[:alnum:].-]+[^.]([\\.])[^.][[:alpha:]]{2,}$" 
 
 isValidEmail <- function(x) {
     grepl(email_pattern, as.character(x), ignore.case = TRUE)
 }
 
+isValidEmail2 <- function(x) {
+    grepl(email_pattern2, as.character(x), ignore.case = TRUE)
+}
+
+isValidEmail3 <- function(x) {
+    grepl(email_pattern3, as.character(x), ignore.case = TRUE)
+}
+
 df['comlink_address'] <- as.data.frame(sapply(df$comlink_address, clean_emails))
 check_emails <- lapply(df$comlink_address, isValidEmail)
+check_emails2 <- lapply(df$comlink_address, isValidEmail2)
+check_emails3 <- lapply(df$comlink_address, isValidEmail3)
 invalid_emails <- subset(df, !grepl(email_pattern, comlink_address))
+invalid_emails2 <- subset(df, !grepl(email_pattern2, comlink_address))
+invalid_emails3 <- subset(df, !grepl(email_pattern3, comlink_address))
+
+str_extract(df$comlink_address, email_pattern3)
+
 #write.csv(df, "testoutput.csv", row.names = FALSE)
 
 # split out concatted install column into individual rows per install
