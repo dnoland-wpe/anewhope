@@ -48,7 +48,7 @@ clean_emails <- function(x) {
 # Validate emails following clean
 email_pattern <- "^\\<[A-Za-z0-9.-]+[^.]([\\.])[^.][A-Za-z0-9.-]+@[A-Za-z0-9.-]+[^.]([\\.])[^.][A-Za-z]{2,}$"
 email_pattern2 <- "/^[a-zA-Z0-9!#$%&\\'*+\\/=?^_`{|}~\\.-]+$/"
-email_pattern <- "^[[:alnum:].-]+?([^.]([\\.])[^.])[[:alnum:].-]+@[[:alnum:].-]+[^.]([\\.])[^.][[:alpha:]]{2,}$" 
+email_pattern3 <- "^[[:alnum:].-]+?([^.]([\\.])[^.])[[:alnum:].-]+@[[:alnum:].-]+[^.]([\\.])[^.][[:alpha:]]{2,}$" 
 
 isValidEmail <- function(x) {
     grepl(email_pattern, as.character(x), ignore.case = TRUE)
